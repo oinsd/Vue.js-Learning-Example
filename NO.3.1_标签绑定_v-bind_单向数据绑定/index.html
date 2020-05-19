@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <div id="app">
+        <!-- v-开头的都是指令，有Vue提供的特殊属性 -->
+        <span :title='message'>   <!-- 绑定标签用v-bind 非标签则{{xxxx}} -->
+            鼠标停在这儿看看【动态绑定】的提示信息！{{ message }}
+            <!-- vm.message = 'yes!!!' 则会改变title提示的信息-->
+        </span>
+        <input type="text" :value="message"> 
+        <!-- 注意v-bind是单项绑定 -->
+        <!-- <input type="text" v-model="message"> -->
+    </div>
+
+
+    
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app', 
+                data:   // 这是Model 
+                {
+                    message: '哼!哼!哼!哼!哼!哼!'
+                },
+            }
+        )
+    </script>
+</body>
+</html>
