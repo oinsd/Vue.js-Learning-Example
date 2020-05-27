@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- view层 -->
+    <div id="app">
+        <p>cTime1{{ cTime1() }}</p>
+        <p>cTime1{{ cTime2 }}</p>
+        <!-- <p>cTime1{{ cTime2() }}</p>这样写错误 -->
+    </div>
+
+
+    <!-- 导入Vue.js -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: "#app",
+                data: 
+                {
+                    message: "Hello , FastAPI"
+                },
+                methods:  // 方法
+                {
+                    cTime1: function()
+                    {
+                        return Date.now();
+                    }
+                },
+                computed: 
+                {   // Vue特有，计算属性：1、计算结果保存在内存中  2、重复调用不变，类似缓存
+                    // 使用的时候，是调用属性（即cTime2没有括号），而非方法！！！
+                    // 注意方法不与上面methods里面的重名
+                    cTime2: function()
+                    {
+                        this.message;   // 当这个值被赋予新值后，Date.now会重新计算
+                        return Date.now();
+                    }
+                },
+            }
+        )
+    </script>
+</body>
+</html>

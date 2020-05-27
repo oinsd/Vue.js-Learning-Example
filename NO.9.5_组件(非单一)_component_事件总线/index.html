@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <!-- 注意：未来学习的状态管理（vuex）可完成本节内容 -->
+    <div id="app"> 
+        <bbar></bbar>
+        <cbar></cbar>
+    </div>
+
+
+    <script>
+
+        Vue.component
+        (   
+            'bbar',
+            {
+                template: `
+                        <div>
+                            【bbar组件 希望发送给cbar】
+                            <input type="text" ref='b_text' />
+                            <button @click='send()'>点这发送cbar</button>
+                        </div>`,
+                methods: {
+                    send(){
+                        bus.$emit('c_message',this.$refs.b_text.value)
+                    }
+                },
+            }
+        );
+        Vue.component
+        (   
+            'cbar', // 这个负责监听
+            {
+                template: `
+                        <div>
+                            【我是cbar】
+                        </div>`,
+                mounted() // 当前组件DOM创建后的钩子函数
+                {
+                    bus.$on('c_message',(data)=>{console.log('已收到bbar的消息',data);});
+                },            
+            }
+            
+        );
+        
+        var bus = new Vue(); // 空Vue实例，即中央事件总线
+        var vm = new Vue // 这里new实例后，就自动创建root组件（根组件）
+        (
+            {
+                el: '#app',
+                data:{} ,
+            }
+        )
+    </script>
+</body>
+</html>

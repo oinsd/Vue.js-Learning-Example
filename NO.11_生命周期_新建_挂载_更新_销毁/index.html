@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2 id="h2" >{{ message }}</h2>
+        <button @click="message='message被修改了'">点我</button>
+    </div>
+
+
+
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app',
+                data: 
+                {
+                    message: 'Hello Vue!',
+                },
+                methods: 
+                {
+                    show(){console.log("【show方法被执行】");}
+                },
+                // //-------------独立测试区1：Create-------------
+                // beforeCreate()  // 空Vue实例创建前
+                // {
+                //     // console.log('message:',this.message);
+                //     // this.show();
+                // },
+                // created()  // 空Vue实例创建完成
+                // {
+                //     console.log('message:',this.message);
+                //     this.show();
+                // },
+                // //-------------独立测试区2：Mount-------------
+                // beforeMount() 
+                // {
+                //     console.log(document.getElementById('h2').innerText);
+                //     // 注意：这里为了演示效果，否则不推荐直接对DOM操作
+                // },
+                // mounted() 
+                // {
+                //     console.log(document.getElementById('h2').innerText);
+                //     // 注意：这里为了演示效果，否则不推荐直接对DOM操作
+                // },
+                // //-------------独立测试区3：Update-------------
+                // beforeUpdate() 
+                // {
+                //     console.log('h2的元素内容：' + document.getElementById('h2').innerText);
+                //     // 注意：这里为了演示效果，否则不推荐直接对DOM操作
+                //     console.log('message:',this.message);
+                // },
+                // updated() {
+                //     console.log('h2的元素内容：' + document.getElementById('h2').innerText);
+                //     // 注意：这里为了演示效果，否则不推荐直接对DOM操作
+                //     console.log('message:',this.message);
+                // },
+            }
+        )
+    </script>
+</body>
+</html>

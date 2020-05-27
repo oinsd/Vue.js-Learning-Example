@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <div id="app">
+        <button v-on:click='zhe_0'>点这儿</button>
+        <!-- 下面是缩写 -->
+        <button @click='zhe_1()'>再点一次</button>
+    </div>
+
+
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app', // el是元素element的简写，‘#app’是ID选择器方式绑定message
+                // 这里是Model：数据（后端给）
+                data: 
+                {
+                    message: '哼!'
+                },
+                methods:
+                {
+                    zhe_0: function () 
+                    {
+                        alert(this.message);   
+                    },
+                    zhe_1()
+                    {
+                        alert(this.message); 
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+</html>

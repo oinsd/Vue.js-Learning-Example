@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <div id="app">
+        <div v-html='url'></div>
+        <br>
+        <div v-show='isShow'>看到我了？</div>
+        <br>
+        <div v-if='isHave'>看到我了？</div>
+        <!-- 注意v-show是显示/隐藏，v-if是创建/删除 -->
+        <br>
+        <button v-on:click='zhe'>点这儿</button>
+    </div>
+
+
+    
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app', 
+                data:   // 这是Model 
+                {
+                    url: '<h1>v-html与v-show演示</h1>',
+                    isShow: false,
+                    isHave: false,
+                },
+                methods:
+                {
+                    zhe: function () 
+                    {
+                        this.isShow = !this.isShow;
+                        this.isHave = !this.isHave;
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+</html>

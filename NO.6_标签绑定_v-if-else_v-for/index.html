@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <div id="app">
+        <!-- v-开头的都是指令，有Vue提供的特殊属性 -->
+        <h1 v-if="type==='L'">L</h1>
+        <h1 v-else-if="type==='XL'">XL</h1>
+        <h1 v-else-if="type==='XXL'">XXL</h1>
+        <h1 v-else>XXXL</h1>
+        <!-- vm.type = 'XXL' 则会改变h1提示的信息-->
+        <br>
+        <li v-for="(item,i) in items">
+            值：{{ item }}，索引：{{ i }}
+        </li>
+    </div>
+
+
+    
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app', 
+                data:   // 这是Model 
+                {
+                    type: 'LL',
+                    items: 
+                    ['大?','加大?','加加大']
+                    // push 可以增加数组元素
+                    // 最好使用Vue.set(vm.items,0,'好大')
+                    // 如果是对象，也可以用set，比较推荐
+                },
+            }
+        )
+    </script>
+</body>
+</html>

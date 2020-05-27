@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <!-- 这里是根组件的templet模板 -->
+    <div id="app"> 
+        <abar></abar> 
+        <!-- <abar></abar>放在根组件的child中，就是根组件的child -->
+        <bbar></bbar>
+    </div>
+
+
+    <script>
+        // 全局定义（注册）组件
+        Vue.component
+        (   
+            'abar',
+            {
+                template:`
+                    <div style='background:yellow'>
+                        【公共root组件的child组件：abar组件】
+                        <button @click='ccc'>确定</button>
+                        <child></child>
+                        <abar_child></abar_child>
+                    </div>`,
+                data()  // 坑！ 注意这里的data写法，不能写属性
+                {
+                    return { abarname:"abarname"}
+                },
+                methods: 
+                {
+                    ccc()
+                    {
+                        alert('abar');
+                    }
+                },
+                // 样式要单文件组件的写法才可实现
+                components: // 局部定义（注册）组件
+                {
+                    abar_child:
+                    {
+                        template:`<div>【abar_child组件，只能在abar组件中使用】</div>`
+                    }
+                }
+            }
+        );
+
+        Vue.component
+        (   
+            'child',
+            {
+                template: `<div>【公共child组件】</div>`
+            }
+        );
+
+        Vue.component
+        (   
+            'bbar',
+            {
+                template: `
+                        <div>
+                            【与abar的同级兄弟组件：bbar组件】
+                            <child></child>
+                        </div>`
+            }
+        )
+        // 组件注意事项：
+        // 1、必须一个根节点（root element），只要与内部标签不冲突。
+        // 2、组件间可通过props进行通讯
+        // 3、组件可以有多个属性，但是data属性的写法必须是方法+返回值
+        
+        var vm = new Vue // 这里new实例后，就自动创建root组件（根组件）
+        (
+            {
+                el: '#app', 
+            }
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+</head>
+<body>
+    <!-- view层 -->
+    <div id="app">
+        <todo>
+            <todo-title slot="todo-title" :title_e="title"></todo-title>
+            <todo-items slot="todo-items" v-for="item in todoItems" :item_m="item"></todo-items>
+            <!-- 这里的slot是固定的，title_e是自定义，item_m是自定义 -->
+        </todo>
+    </div>
+    
+    
+    <script>
+        Vue.component( 
+            'todo',
+            {
+                template:"<div>\
+                                <slot name='todo-title'></slot>\
+                                <ul>\
+                                    <slot name='todo-items'></slot>\
+                                </ul>\
+                          </div>"
+            }
+        );
+        Vue.component(
+            'todo-title',{
+                props: ['title_e'],
+                template: '<div>{{ title_e }}</div>'
+            }
+        );
+        Vue.component(
+            'todo-items',{
+                props: ['item_m'],
+                template: '<li>{{ item_m }}</li>'
+            }
+        );
+
+
+        var vm = new Vue // root组件
+        (
+            {
+                el: "#app",
+                data: 
+                {
+                    title: '我是title，啊哈哈哈哈',
+                    todoItems: ['你好', '您好', 'Hello']
+                },
+            }
+        )
+    </script>
+</body>
+</html>

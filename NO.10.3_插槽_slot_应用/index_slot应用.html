@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"> 
+        <abar>
+            <button @click="isShow=!isShow">ShowButton</button>
+            <!-- 这样写可以访问到父组件的作用域，即可以访问isShow -->
+        </abar>
+        <bbar v-show="isShow"></bbar>
+    </div>
+
+
+    <script>
+        Vue.component
+        (
+            "abar",
+            {
+                template:`
+                    <div>
+                        abar
+                        <slot></slot>
+                    </div>`
+            }
+        );
+        Vue.component
+        (
+            "bbar",
+            {
+                template:`
+                    <div style="background:yellow;width:200px;">
+                        <ul>
+                            <li>123</li>
+                            <li>456</li>
+                            <li>789</li>
+                        </ul>
+                    </div>`
+            }
+        );
+
+        var vm = new Vue // 这里new实例后，就自动创建root组件（根组件）
+        (
+            {
+                el: '#app', 
+                data:
+                {
+                    isShow:false
+                },
+            }
+        )
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ccc v-if="isCreated"></ccc>
+        <button @click="isCreated=!isCreated">点这销毁ccc</button>
+    </div>
+
+
+
+    <script>
+        Vue.component
+        (
+            "ccc",
+            {
+                template:`<div>C组件</div>`,
+                data()
+                {
+                    return {message:'666'}
+                },
+                methods: 
+                {
+                    loog(){console.log("【methods】");}
+                },
+
+                // //-------------独立测试区：Destroy-------------
+
+                // beforeDestroy() { // 进入销毁流程前
+                //     console.log('message:',this.message);
+                // },
+                // destroyed() { // 销毁流程后
+                //     console.log('-----destroyed-----');
+                //     this.loog();
+                //     console.log('message:',this.message);
+                //     // message = '9999';
+                //     // console.log('message:',this.message);
+                // },
+            }
+        );
+        // 应用场景：例如事件间隔定时器setInterval,监听事件等
+        // 内部销毁 this.$destroy()
+        // 对比： 内部销毁 vs 外部销毁
+        // 外部销毁不仅能销毁组件，也能销毁该组件的dom结构
+        // 内部销毁只能销毁组件，不能销毁组件的dom结构
+        var vm = new Vue
+        (
+            {
+                el: '#app',
+                data: 
+                {
+                    isCreated: true,
+                },
+                
+            }
+        )
+    </script>
+</body>
+</html>

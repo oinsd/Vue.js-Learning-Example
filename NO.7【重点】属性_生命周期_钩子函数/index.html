@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <!-- 如果上述地址失效，实验不成功，则需要更换CDN源或者手动下载文件并引用 -->
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <div id="app">
+        <button v-on:click='x_1'>点这儿</button>
+        <button v-on:click='x_2'>点这儿</button>
+        {{ getdata }}
+    </div>
+    <!--  注意如果是vscode要安装插件Live Server开启HTTP服务 -->
+    <!--  注意如果是vscode要安装插件Live Server开启HTTP服务 -->
+    <!--  注意如果是vscode要安装插件Live Server开启HTTP服务 -->
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app', 
+                data:
+                {
+                    getdata:'',
+                },
+                // mounted()
+                // {
+                //     axios.get('/data.json').then
+                //     (
+                //         response=>
+                //         (
+                //             console.log(response.data)
+                //             // 注意.data才是数据
+                //         )
+                //     );
+                //     axios.get('/data.json').then(response=>(this.getdata = response.data));
+                // },
+
+
+                // ==================mounted安装（钩子函数）自动调用==================
+                mounted: function () 
+                {
+                    axios.get('/data.json').then(response=>(console.log(response.data)));
+                    axios.get('/data.json').then(response=>(this.getdata = response.data));
+                },
+
+
+                // ==================methods方法（七大属性之一） 需要被调用==================
+                methods: 
+                {
+                    x_1:function(){axios.get('/data.json').then(response=>(console.log(response.data)))},
+                    x_2:function(){axios.get('/data.json').then(response=>(this.getdata = response.data))},
+                }
+            }
+        );
+    </script>
+</body>
+</html>

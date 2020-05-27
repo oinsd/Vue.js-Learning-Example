@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <div id="app">
+        {{ message }}   <!-- 插值表达式 -->
+    </div>
+
+
+
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app', // el是元素element的简写，‘#app’是ID选择器方式绑定上面的div节点
+                // 这里是Model：数据（后端给）
+                data: 
+                {
+                    message: 'Hello Vue!'
+                }
+                // 如果没有mvvm，后端给数据，前端message是不会变化
+            }
+        )
+    </script>
+</body>
+</html>

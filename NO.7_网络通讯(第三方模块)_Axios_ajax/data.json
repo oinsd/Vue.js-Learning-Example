@@ -1,0 +1,10 @@
+{
+    "name": "Vue + FastAPI",
+    "age": "18",
+    "address": 
+    {
+        "street": "Tianhe",
+        "city": "Guangzhou",
+        "country": "China"
+    }
+}

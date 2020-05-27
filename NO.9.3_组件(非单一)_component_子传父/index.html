@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <!-- 这里是根组件的templet模板 -->
+    <div id="app"> 
+
+        <bbar @b_event='receive($event)'></bbar>
+        <br>
+        {{ show }}
+        
+    </div>
+
+
+    <script>
+
+        Vue.component
+        (   
+            'bbar',
+            {
+                template: `
+                        <div>
+                            【root的child组件：bbar组件】
+                            <button @click='send()'>点这发送给父组件</button>
+                        </div>`,
+                methods: 
+                {
+                    send()
+                    {
+                        this.$emit('b_event','你好') // 分发事件
+                        // this.$emit('b_event',this.xxxxx) 
+                        // // 这里也可以传data的属性
+                    }  
+                },
+            }
+        )
+        
+        var vm = new Vue // 这里new实例后，就自动创建root组件（根组件）
+        (
+            {
+                el: '#app',
+                data:
+                {
+                    p_name:'root组件的p_name属性（使用bind绑定）',
+                    show: []
+                } ,
+                methods: 
+                {
+                    receive(e){this.show.push(`【父组件收到消息！${e}】`)}   
+                },
+            }
+        )
+        // 举例说明子传父的应用
+    </script>
+</body>
+</html>

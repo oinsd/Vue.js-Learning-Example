@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 这是View  现在就是templet模板-->
+    <div id="app">
+        <input type="text" v-model.lazy="a_0"/>
+        <!-- .lazy（焦点变更即更新） .number（只留数字） .trim（去首尾空格）等等 -->
+        <br>
+        {{ a_0 }}
+        <br>
+        <input type="checkbox" v-model="a_1"/>我想
+        {{ a_1 }}
+        <p>你想选啥？
+            <input type="checkbox" v-model="a_2" value="1号"/>1号
+            <input type="checkbox" v-model="a_2" value="2号"/>2号
+            <input type="checkbox" v-model="a_2" value="3号"/>3号
+        </p>
+        {{ a_2 }}
+        <p>你最最最想选啥？
+            <input type="radio" v-model="a_3" value="1号"/>1号
+            <input type="radio" v-model="a_3" value="2号"/>2号
+            <input type="radio" v-model="a_3" value="3号"/>3号
+        </p>
+        {{ a_3 }}
+        <!-- 演示这个目的：我们不用去读取DOM节点里的状态，而是获得绑定的变量 -->
+        <!-- 演示这个目的：我们不用去读取DOM节点里的状态，而是获得绑定的变量 -->
+        <!-- 演示这个目的：我们不用去读取DOM节点里的状态，而是获得绑定的变量 -->
+    </div>
+
+
+    
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app', 
+                data:   // 这是Model 
+                {
+                    a_0: '',
+                    a_1: false,
+                    a_2: [],
+                    a_3: '',
+                },
+            }
+        )
+    </script>
+</body>
+</html>

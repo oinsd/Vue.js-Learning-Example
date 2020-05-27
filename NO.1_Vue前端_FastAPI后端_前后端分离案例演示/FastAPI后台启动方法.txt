@@ -1,0 +1,5 @@
+感兴趣的小伙伴可以到我的主页找到：
+FastAPI教程第三季（二）：HelloWorld前后端分离案例（Vue+FastAPI）
+
+地址：
+https://www.bilibili.com/video/BV1mt4y127ei/

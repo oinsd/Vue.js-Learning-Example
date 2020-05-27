@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"> 
+        <keep-alive>
+            <component :is="who"></component> 
+            <!-- 注意这里的切换组件，是直接删掉和创建 -->
+            <!-- 如果需要保持home组件的input状态，需要keep-alive包裹 -->
+        </keep-alive>
+        <ul>
+            <li><a @click="who='home'">首页</a></li>
+            <li><a @click="who='news'">新闻</a></li>
+            <li><a @click="who='blog'">博客</a></li>
+        </ul>
+    </div>
+
+
+    <script>
+        // 
+        var vm = new Vue // 这里new实例后，就自动创建root组件（根组件）
+        (
+            {
+                el: '#app', 
+                data:{
+                    who:'home'
+                },
+                components:{
+                    "home":{
+                        template:
+                        `<div>
+                            home
+                            <input type="text">
+                        </div>`
+                    },
+                    "news":{
+                        template:`<div>news</div>`
+                    },
+                    "blog":{
+                        template:`<div>blog</div>`
+                    },
+                }
+            }
+        )
+    </script>
+</body>
+</html>

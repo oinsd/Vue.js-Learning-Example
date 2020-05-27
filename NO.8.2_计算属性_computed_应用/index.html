@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- view层 -->
+    <div id="app">
+        <input type="text" v-model="inputing"/>
+        <ul>
+            <li v-for="d in myList">
+                {{ d }}
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- 导入Vue.js -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: "#app",
+                data: 
+                {
+                    inputing: "",
+                    list: ["Hi", "Ha", "Hab", "Habc", "Habcd"],
+                },
+                computed: 
+                {   // Vue特有，计算属性：1、计算结果保存在内存中  2、重复调用不变，类似缓存
+                    // 使用的时候，是调用属性，而非方法！！！
+                    // 注意方法不与上面methods里面的重名
+                    myList: function()
+                    {
+                        // 假设在内存中：["Ha", "Hab", "Habc", "Habcd"]
+                        return this.list.filter
+                        (
+                            item=>
+                            item.indexOf(this.inputing) > -1
+                        )
+                        // filter对数组中的每个元素都执行一次指定的函数（callback），并且创建一个新的数组
+                        // indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+                        // 如果要检索的字符串值没有出现，则该方法返回 -1。
+                    }
+                },
+            }
+        )
+    </script>
+</body>
+</html>
